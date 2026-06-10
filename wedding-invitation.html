@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afroze & Ayesha — Wedding Reception</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #fdf6ee;
+    --blush: #e8c5b0;
+    --rose: #c4877a;
+    --dusty-rose: #d4a5a5;
+    --mauve: #9b6b6b;
+    --deep: #4a2c2c;
+    --gold: #c9a96e;
+    --gold-light: #e8d5a3;
+    --sage: #8a9e8a;
+    --text: #3a2020;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    font-family: 'EB Garamond', serif;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(160deg, #fdf0e6 0%, #f5e4d0 40%, #ede0d4 100%);
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  /* Floral SVG corners */
+  .floral-tl, .floral-tr, .floral-bl, .floral-br {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .floral-tl { top: 0; left: 0; transform: rotate(0deg); }
+  .floral-tr { top: 0; right: 0; transform: rotate(90deg); }
+  .floral-bl { bottom: 0; left: 0; transform: rotate(270deg); }
+  .floral-br { bottom: 0; right: 0; transform: rotate(180deg); }
+
+  .floral-corner-svg {
+    width: 100%; height: 100%;
+  }
+
+  /* Centre watermark rose */
+  .hero-bg-rose {
+    position: absolute;
+    width: 520px; height: 520px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeUp 1.4s ease both;
+  }
+
+  .hero-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeUp 1.2s ease 0.2s both;
+  }
+
+  .hero-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 10vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--deep);
+    letter-spacing: -0.01em;
+  }
+
+  .hero-names .amp {
+    font-style: italic;
+    color: var(--rose);
+    font-size: 0.85em;
+    display: block;
+    margin: 4px 0;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 28px auto;
+  }
+
+  .hero-divider-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .hero-divider-line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+
+  .hero-divider-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero-date {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    color: var(--mauve);
+    margin-bottom: 8px;
+  }
+
+  .hero-event {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    color: var(--rose);
+    margin-bottom: 32px;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.5;
+    animation: bounce 2s ease-in-out infinite;
+    z-index: 2;
+  }
+  .scroll-cue span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--mauve);
+  }
+  .scroll-arrow {
+    width: 1px; height: 40px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 80px 20px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.85;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px auto 32px;
+  }
+  .ornament-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blush));
+  }
+  .ornament-line.r { background: linear-gradient(90deg, var(--blush), transparent); }
+  .ornament-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--dusty-rose);
+  }
+
+  .body-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #5a3535;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ── INVITATION CARD ── */
+  .invite-card {
+    background: linear-gradient(135deg, #fff9f4 0%, #fdf0e5 100%);
+    border: 1px solid #e8d0b8;
+    border-radius: 4px;
+    padding: 56px 48px;
+    margin: 0 auto;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 8px 48px rgba(74,44,44,0.08), inset 0 0 0 8px rgba(201,169,110,0.1);
+  }
+  .invite-card::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(201,169,110,0.25);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  /* ── COUNTDOWN ── */
+  .countdown-section {
+    background: linear-gradient(160deg, #4a2c2c 0%, #3a1e1e 100%);
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .countdown-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .countdown-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    opacity: 0.7;
+    margin-bottom: 16px;
+  }
+  .countdown-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: #fff9f0;
+    margin-bottom: 48px;
+  }
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: clamp(12px, 4vw, 40px);
+    flex-wrap: wrap;
+  }
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .countdown-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    min-width: 90px;
+    text-align: center;
+  }
+  .countdown-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    color: var(--rose);
+    opacity: 0.5;
+    line-height: 1;
+    align-self: flex-start;
+    padding-top: 8px;
+  }
+  .countdown-word {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--blush);
+    opacity: 0.65;
+    text-transform: uppercase;
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .schedule-item {
+    background: white;
+    border: 1px solid #e8d5c4;
+    border-radius: 3px;
+    padding: 28px 16px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .schedule-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(74,44,44,0.1);
+  }
+  .schedule-item::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 2px;
+    background: var(--gold);
+  }
+  .schedule-time {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+  .schedule-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--deep);
+  }
+
+  /* ── VENUE ── */
+  .venue-card {
+    background: linear-gradient(135deg, #fff9f4, #fdf0e5);
+    border: 1px solid #e0c9b5;
+    border-radius: 4px;
+    padding: 48px;
+    margin: 40px auto 0;
+    max-width: 500px;
+    position: relative;
+  }
+  .venue-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .venue-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+  .venue-address {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+    line-height: 1.8;
+  }
+  .venue-time-badge {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--deep);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    padding: 10px 24px;
+    border-radius: 2px;
+  }
+
+  /* ── DRESS CODE ── */
+  .dress-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  @media (max-width: 520px) { .dress-cols { grid-template-columns: 1fr; } }
+  .dress-card {
+    background: linear-gradient(135deg, #fff9f4, #fdf0e5);
+    border: 1px solid #e8d5c4;
+    border-radius: 3px;
+    padding: 32px 24px;
+  }
+  .dress-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .dress-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .dress-desc {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--mauve);
+  }
+
+  /* ── RSVP ── */
+  .rsvp-section {
+    background: linear-gradient(160deg, #4a2c2c 0%, #3a1e1e 100%);
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .rsvp-section .section-label { color: var(--gold-light); opacity: 0.7; }
+  .rsvp-section .section-title { color: #fff9f0; }
+
+  .rsvp-form {
+    max-width: 460px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .rsvp-input, .rsvp-select, .rsvp-textarea {
+    width: 100%;
+    background: rgba(255,249,240,0.07);
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 2px;
+    padding: 14px 18px;
+    color: #fff9f0;
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .rsvp-input::placeholder, .rsvp-textarea::placeholder { color: rgba(255,249,240,0.35); }
+  .rsvp-input:focus, .rsvp-select:focus, .rsvp-textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255,249,240,0.12);
+  }
+  .rsvp-select option { background: #4a2c2c; }
+  .rsvp-textarea { resize: vertical; min-height: 90px; }
+
+  .rsvp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 480px) { .rsvp-row { grid-template-columns: 1fr; } }
+
+  .rsvp-btn {
+    background: linear-gradient(135deg, var(--gold), #b8924a);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.35em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: opacity 0.3s, transform 0.3s;
+    text-transform: uppercase;
+  }
+  .rsvp-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  .rsvp-deadline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--blush);
+    opacity: 0.65;
+    margin-top: 16px;
+  }
+
+  .rsvp-success {
+    display: none;
+    background: rgba(255,249,240,0.08);
+    border: 1px solid rgba(201,169,110,0.4);
+    border-radius: 3px;
+    padding: 32px;
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #2a1414;
+    text-align: center;
+    padding: 48px 20px;
+  }
+  .footer-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .footer-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--blush);
+    opacity: 0.5;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .js-loaded .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .js-loaded .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+
+  <!-- Corner florals -->
+  <div class="floral-tl">
+    <svg class="floral-corner-svg" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.7">
+        <path d="M10,10 Q40,5 50,30 Q55,50 40,60 Q20,65 10,50 Q5,30 10,10Z" fill="#c9a96e" opacity="0.3"/>
+        <path d="M0,40 Q30,30 45,55 Q55,75 35,85 Q15,90 5,70 Q-5,50 0,40Z" fill="#d4a5a5" opacity="0.3"/>
+        <path d="M30,0 Q50,20 40,45 Q30,60 10,55 Q-5,45 0,25 Q10,5 30,0Z" fill="#e8c5b0" opacity="0.35"/>
+        <circle cx="20" cy="25" r="4" fill="#c9a96e" opacity="0.4"/>
+        <circle cx="35" cy="45" r="3" fill="#d4a5a5" opacity="0.35"/>
+        <path d="M5,80 Q25,70 40,90 Q50,105 35,115" stroke="#c9a96e" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M60,5 Q70,25 55,40 Q45,50 30,45" stroke="#d4a5a5" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M0,100 Q20,90 35,110" stroke="#e8c5b0" stroke-width="1" fill="none" opacity="0.35"/>
+        <path d="M80,0 Q90,20 75,35" stroke="#c9a96e" stroke-width="1" fill="none" opacity="0.35"/>
+        <!-- leaves -->
+        <ellipse cx="15" cy="65" rx="8" ry="18" fill="#8a9e8a" opacity="0.25" transform="rotate(-30 15 65)"/>
+        <ellipse cx="55" cy="15" rx="6" ry="14" fill="#8a9e8a" opacity="0.2" transform="rotate(60 55 15)"/>
+        <ellipse cx="5" cy="110" rx="5" ry="12" fill="#8a9e8a" opacity="0.2" transform="rotate(-20 5 110)"/>
+        <ellipse cx="90" cy="5" rx="5" ry="12" fill="#8a9e8a" opacity="0.2" transform="rotate(70 90 5)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="floral-tr">
+    <svg class="floral-corner-svg" viewBox="0 0 220 220" fill="none">
+      <g opacity="0.7">
+        <path d="M10,10 Q40,5 50,30 Q55,50 40,60 Q20,65 10,50 Q5,30 10,10Z" fill="#c9a96e" opacity="0.3"/>
+        <path d="M0,40 Q30,30 45,55 Q55,75 35,85 Q15,90 5,70 Q-5,50 0,40Z" fill="#d4a5a5" opacity="0.3"/>
+        <path d="M30,0 Q50,20 40,45 Q30,60 10,55 Q-5,45 0,25 Q10,5 30,0Z" fill="#e8c5b0" opacity="0.35"/>
+        <circle cx="20" cy="25" r="4" fill="#c9a96e" opacity="0.4"/>
+        <circle cx="35" cy="45" r="3" fill="#d4a5a5" opacity="0.35"/>
+        <path d="M5,80 Q25,70 40,90 Q50,105 35,115" stroke="#c9a96e" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M60,5 Q70,25 55,40 Q45,50 30,45" stroke="#d4a5a5" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="15" cy="65" rx="8" ry="18" fill="#8a9e8a" opacity="0.25" transform="rotate(-30 15 65)"/>
+        <ellipse cx="55" cy="15" rx="6" ry="14" fill="#8a9e8a" opacity="0.2" transform="rotate(60 55 15)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="floral-bl">
+    <svg class="floral-corner-svg" viewBox="0 0 220 220" fill="none">
+      <g opacity="0.7">
+        <path d="M10,10 Q40,5 50,30 Q55,50 40,60 Q20,65 10,50 Q5,30 10,10Z" fill="#c9a96e" opacity="0.3"/>
+        <path d="M0,40 Q30,30 45,55 Q55,75 35,85 Q15,90 5,70 Q-5,50 0,40Z" fill="#d4a5a5" opacity="0.3"/>
+        <path d="M30,0 Q50,20 40,45 Q30,60 10,55 Q-5,45 0,25 Q10,5 30,0Z" fill="#e8c5b0" opacity="0.35"/>
+        <circle cx="20" cy="25" r="4" fill="#c9a96e" opacity="0.4"/>
+        <ellipse cx="15" cy="65" rx="8" ry="18" fill="#8a9e8a" opacity="0.25" transform="rotate(-30 15 65)"/>
+        <ellipse cx="55" cy="15" rx="6" ry="14" fill="#8a9e8a" opacity="0.2" transform="rotate(60 55 15)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="floral-br">
+    <svg class="floral-corner-svg" viewBox="0 0 220 220" fill="none">
+      <g opacity="0.7">
+        <path d="M10,10 Q40,5 50,30 Q55,50 40,60 Q20,65 10,50 Q5,30 10,10Z" fill="#c9a96e" opacity="0.3"/>
+        <path d="M0,40 Q30,30 45,55 Q55,75 35,85 Q15,90 5,70 Q-5,50 0,40Z" fill="#d4a5a5" opacity="0.3"/>
+        <path d="M30,0 Q50,20 40,45 Q30,60 10,55 Q-5,45 0,25 Q10,5 30,0Z" fill="#e8c5b0" opacity="0.35"/>
+        <circle cx="20" cy="25" r="4" fill="#c9a96e" opacity="0.4"/>
+        <ellipse cx="15" cy="65" rx="8" ry="18" fill="#8a9e8a" opacity="0.25" transform="rotate(-30 15 65)"/>
+        <ellipse cx="55" cy="15" rx="6" ry="14" fill="#8a9e8a" opacity="0.2" transform="rotate(60 55 15)"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Watermark rose -->
+  <svg class="hero-bg-rose" viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="190" stroke="#c4877a" stroke-width="1"/>
+    <path d="M200,60 Q230,120 200,160 Q170,120 200,60Z" fill="#c4877a"/>
+    <path d="M200,240 Q230,280 200,340 Q170,280 200,240Z" fill="#c4877a"/>
+    <path d="M60,200 Q120,170 160,200 Q120,230 60,200Z" fill="#c4877a"/>
+    <path d="M240,200 Q280,170 340,200 Q280,230 240,200Z" fill="#c4877a"/>
+    <path d="M200,200 m-60,0 a60,60 0 1,0 120,0 a60,60 0 1,0 -120,0" fill="#c4877a" opacity="0.5"/>
+    <path d="M110,110 Q140,145 130,170 Q105,165 90,140 Q95,115 110,110Z" fill="#c4877a"/>
+    <path d="M290,110 Q285,135 270,140 Q255,165 230,170 Q225,145 255,110Z" fill="#c4877a"/>
+    <path d="M110,290 Q135,255 160,255 Q165,280 140,295 Q115,295 110,290Z" fill="#c4877a"/>
+    <path d="M290,290 Q265,295 240,280 Q245,255 270,250 Q295,255 290,290Z" fill="#c4877a"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-label">You are cordially invited to the</p>
+    <h1 class="hero-names">
+      P Afroze Khan<span class="amp">&amp;</span>S Ayesha Muskan
+    </h1>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-diamond"></div>
+      <div class="hero-divider-line r"></div>
+    </div>
+    <p class="hero-date">05 · JULY · 2026</p>
+    <p class="hero-event">Wedding Reception</p>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+
+<!-- ══ INVITATION MESSAGE ══ -->
+<section class="reveal">
+  <p class="section-label">With joyful hearts</p>
+  <h2 class="section-title">Dear Friends & Family</h2>
+  <div class="ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-dot"></div>
+    <div class="ornament-line r"></div>
+  </div>
+
+  <div class="invite-card">
+    <p class="body-text">
+      As we celebrate the beginning of our beautiful journey together, we are filled with gratitude for the wonderful people in our lives. Your love and blessings mean the world to us, and we would be truly honoured to have you join us as we mark this joyful occasion.
+    </p>
+    <br>
+    <p class="body-text" style="font-style:italic; color:var(--rose); font-size:1.05rem;">
+      "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ COUNTDOWN ══ -->
+<div class="countdown-section reveal">
+  <p class="countdown-label">The celebration begins in</p>
+  <h2 class="countdown-title">Counting down the days…</h2>
+  <div class="countdown-grid">
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-days">26</div>
+      <div class="countdown-word">Days</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-hours">00</div>
+      <div class="countdown-word">Hours</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-mins">00</div>
+      <div class="countdown-word">Minutes</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-secs">00</div>
+      <div class="countdown-word">Seconds</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ SCHEDULE ══ -->
+<section class="reveal">
+  <p class="section-label">The evening unfolds</p>
+  <h2 class="section-title">Schedule of Events</h2>
+  <div class="ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-dot"></div>
+    <div class="ornament-line r"></div>
+  </div>
+  <div class="schedule-grid">
+    <div class="schedule-item reveal reveal-delay-1">
+      <div class="schedule-time">8:00 PM</div>
+      <div class="schedule-name">Guests Arrive</div>
+    </div>
+    <div class="schedule-item reveal reveal-delay-2">
+      <div class="schedule-time">8:30 PM</div>
+      <div class="schedule-name">Reception Begins</div>
+    </div>
+    <div class="schedule-item reveal reveal-delay-3">
+      <div class="schedule-time">9:00 PM</div>
+      <div class="schedule-name">Dinner</div>
+    </div>
+    <div class="schedule-item reveal">
+      <div class="schedule-time">10:30 PM</div>
+      <div class="schedule-name">Celebration & Music</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ VENUE ══ -->
+<section class="reveal">
+  <p class="section-label">Join us at</p>
+  <h2 class="section-title">The Venue</h2>
+  <div class="ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-dot"></div>
+    <div class="ornament-line r"></div>
+  </div>
+  <div class="venue-card">
+    <span class="venue-icon">✦</span>
+    <div class="venue-name">Kurnool Convention Centre</div>
+    <div class="venue-address">Kurnool, Andhra Pradesh</div>
+    <div class="venue-time-badge">Sunday, 5th July 2026 · 8:00 PM</div>
+  </div>
+</section>
+
+
+<!-- ══ DRESS CODE ══ -->
+<section class="reveal">
+  <p class="section-label">Elegance requested</p>
+  <h2 class="section-title">Dress Code</h2>
+  <div class="ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-dot"></div>
+    <div class="ornament-line r"></div>
+  </div>
+  <p class="body-text" style="margin-bottom:32px;">We kindly invite you to dress in elegant attire that reflects the beauty and spirit of this special evening.</p>
+  <div class="dress-cols">
+    <div class="dress-card">
+      <span class="dress-icon">🤵</span>
+      <div class="dress-title">Gentlemen</div>
+      <div class="dress-desc">Formal suits or sherwanis in classic, refined tones are warmly welcomed.</div>
+    </div>
+    <div class="dress-card">
+      <span class="dress-icon">👗</span>
+      <div class="dress-title">Ladies</div>
+      <div class="dress-desc">Sarees, lehengas, or formal gowns in elegant, polished styles are encouraged.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ RSVP ══ -->
+<div class="rsvp-section reveal">
+  <p class="section-label">Kindly respond</p>
+  <h2 class="section-title" style="margin-bottom:12px;">Confirm Your Attendance</h2>
+  <div class="ornament" style="margin-bottom:40px;">
+    <div class="ornament-line" style="background:linear-gradient(90deg,transparent,rgba(201,169,110,0.4))"></div>
+    <div class="ornament-dot" style="background:var(--gold)"></div>
+    <div class="ornament-line r" style="background:linear-gradient(90deg,rgba(201,169,110,0.4),transparent)"></div>
+  </div>
+
+  <div class="rsvp-form" id="rsvp-form">
+    <input class="rsvp-input" type="text" id="rsvp-name" placeholder="Your Full Name" />
+    <div class="rsvp-row">
+      <input class="rsvp-input" type="number" id="rsvp-guests" placeholder="No. of Guests" min="1" max="10"/>
+      <select class="rsvp-select" id="rsvp-attending">
+        <option value="" disabled selected>Will you attend?</option>
+        <option value="yes">Yes, we will be there! 🎉</option>
+        <option value="no">Unfortunately, we cannot</option>
+      </select>
+    </div>
+    <textarea class="rsvp-textarea" id="rsvp-notes" placeholder="Dietary requirements or a message for the couple (optional)"></textarea>
+    <button class="rsvp-btn" onclick="submitRSVP()">Send Your RSVP</button>
+    <p class="rsvp-deadline">Please respond by 20th June 2026</p>
+  </div>
+
+  <div class="rsvp-success" id="rsvp-success">
+    Thank you — we look forward to celebrating with you! ✦
+  </div>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-names">P Afroze Khan &amp; S Ayesha Muskan</div>
+  <div class="footer-date" style="margin-top:6px; margin-bottom:24px;">05 · JULY · 2026 · KURNOOL</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
+    <div style="width:40px;height:1px;background:rgba(201,169,110,0.3)"></div>
+    <div style="width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:0.4"></div>
+    <div style="width:40px;height:1px;background:rgba(201,169,110,0.3)"></div>
+  </div>
+  <p style="font-family:'EB Garamond',serif;font-style:italic;color:rgba(255,249,240,0.25);font-size:0.9rem;margin-top:20px;">With love &amp; gratitude</p>
+</footer>
+
+
+<script>
+  // ── Countdown ──
+  function updateCountdown() {
+    try {
+      var target = new Date("2026-07-05T20:00:00");
+      var now = new Date();
+      var diff = target - now;
+      if (isNaN(diff) || diff <= 0) {
+        document.getElementById("cd-days").textContent = "00";
+        document.getElementById("cd-hours").textContent = "00";
+        document.getElementById("cd-mins").textContent = "00";
+        document.getElementById("cd-secs").textContent = "00";
+        return;
+      }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      document.getElementById("cd-days").textContent = String(d).padStart(2,"0");
+      document.getElementById("cd-hours").textContent = String(h).padStart(2,"0");
+      document.getElementById("cd-mins").textContent = String(m).padStart(2,"0");
+      document.getElementById("cd-secs").textContent = String(s).padStart(2,"0");
+    } catch(e) {}
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── Scroll reveal ──
+  document.documentElement.classList.add('js-loaded');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('visible');
+    } else {
+      observer.observe(el);
+    }
+  });
+
+  // ── RSVP submit ──
+  function submitRSVP() {
+    const name = document.getElementById('rsvp-name').value.trim();
+    const attending = document.getElementById('rsvp-attending').value;
+    if (!name || !attending) {
+      alert('Please fill in your name and let us know if you can attend.');
+      return;
+    }
+    document.getElementById('rsvp-form').style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
